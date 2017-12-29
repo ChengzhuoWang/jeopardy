@@ -1,0 +1,140 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin-right: -60px;
+  margin-left: 40px; 
+}
+
+.box {
+    height:70px;
+    width: 17%;
+    
+    background-color: blue;
+    display: inline-block;
+    border: 9px solid black;
+    cursor: pointer;
+    }
+
+.heading {
+    width: 99%;
+    height: 30px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.col-heading {
+    color:white;
+    border: 9px solid black;
+}
+
+section p {
+    text-align: center;
+    font-size: 4.3em;
+    color:yellow;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: -20px;
+    padding-left: -10px;
+    margin-top:  17px;
+    margin-right:-20px;
+    margin-left: 10px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #293f50;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 55%; 
+    height: 270px;
+}
+
+
+/*******      MODAL CONTENT        ************/
+
+.question {
+    color: #fff;
+}
+
+.option1 {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;  
+  letter-spacing: .5px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin: 0px 70px 15px 70px;
+}
+
+.option2 {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: .5px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin: 0px 70px 15px 70px;
+}
+
+.option3 {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: .5px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin: 0px 70px 15px 70px;
+}
+
+.option4 {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: .5px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin: 0px 70px 15px 70px;
+}
+
+.option1:hover {
+  color:#a9b2b9;
+}
+
+.option2:hover {
+  color: #a9b2b9
+}
+
+.option3:hover {
+  color: #a9b2b9
+}
+
+.option4:hover {
+  color: #a9b2b9
+}
+
+
+/*******  MODAL RESULTS AFTER EVENT   ********/
+.modal-result {
+    color: #fff;
+}
+
+.answer {
+    color:#fff;
+}
+
+
+#score {
+  margin-top:30px;
+}
