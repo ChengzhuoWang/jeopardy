@@ -1,3 +1,12 @@
+// REFACTORING IDEAS
+// 1. HAVE THE QUESTION DATA IN A SEPARATE FILE AND IMPORT IT
+// 2. INSTEAD OF HAVING 4 SEPARATE BOXOPTION STRINGS.. USE A BOXOPTION ARRAY AND ASSIGN
+// EACH BOXOPTION ELEMENT TO ITS CORRELATING DATAOPTION ELEMENT WITHIN A FOR LOOP
+// ONCE YOU DO THOSE 2 CREATE A NEW MAKE YOUR INITIAL COMMIT
+
+// USE A FUNCTION TO GIVE EACH BOX A CLASS NAME OF "BOX" INSTEAD OF DOING IT MANUALLY IN THE HTML DOCUMENT
+
+// add
 
 var score = 0;
 window.onload = function() {
@@ -78,7 +87,7 @@ window.onload = function() {
 
       setTimeout(function(){
         modal.style.display = 'none';
-      }, 2000); // show the answer then close modal 
+      }, 2000); // show the answer then close modal after
       });
 
       boxOption1.onclick = function(event){
@@ -99,6 +108,7 @@ window.onload = function() {
  function getScore(data) {
   var scoreCheck = document.getElementById('score');
   if (event.target.innerHTML == answer.innerHTML) {
+        //scoreCheck.innerHTML = addScore(data);
         score += data.difficultyLevel;
       }
       else {
@@ -246,7 +256,97 @@ var questions = {
       answer:  "Freddy Adu",
       category:  "MLS",
       difficultyLevel: 1000
-    } 
+    },
+
+    mlbEasy: {
+      id:  "mlb-easy",
+      question:  "Who's number was the first ever retired by an MLB team?",
+      options:  ["Lou Gehrig", "Mickey Mantle", "Babe Ruth", "Jackie Robinson"],
+      answer:  "Lou Gehrig",
+      category:  "MLB",
+      difficultyLevel: 200
+    },
+
+    mlbEasyMedium: {
+      id:  "mlb-easy-medium",
+      question:  "Which franchise became the New York Yankees?",
+      options:  ["Philidelphia Athletics", "Baltimore Orioles", "Washington Senators", "Boston Braves"],
+      answer:  "Baltimore Orioles",
+      category:  "MLB",
+      difficultyLevel: 400
+    },
+
+    mlbMedium: {
+      id:  "mlb-medium",
+      question:  "What is the oldest stadium in MLB?",
+      options:  ["Wrigley Field", "Yankee Stadium", "Dodger Stadium", "Fenway Park"],
+      answer:  "Fenway Park",
+      category:  "MLB",
+      difficultyLevel: 600
+    },
+
+    mlbMediumHard: {
+      id:  "mlb-medium-hard",
+      question:  "Which team has the most overall loses in MLB history?",
+      options:  ["New York Mets", "Atlanta Braves", "Baltimore Orioles", "Philadelphia Phillies"],
+      answer:  "Philadelphia Phillies",
+      category:  "MLB",
+      difficultyLevel: 800
+    },
+
+    mlbHard: {
+      id:  "mlb-hard",
+      question:  "Who is one of only two players to win back-to-back Home Run Derbys?",
+      options:  ["Ken Griffey Jr", "Sammy Sosa", "Prince Fielder", "Barry Bonds"],
+      answer:  "Ken Griffey Jr",
+      category:  "MLB",
+      difficultyLevel: 1000
+    },
+
+    nhlEasy: {
+      id:  "nhl-easy",
+      question:  "Which team was the first to win 5 consecutive Stanley Cups?",
+      options:  ["Montreal Canadiens", "New York Rangers", "Toronto Maple Leafs", "Edmonton Oilers"],
+      answer:  "Montreal Canadiens",
+      category:  "MLB",
+      difficultyLevel: 200
+    },
+
+    nhlEasyMedium: {
+      id:  "nhl-easy-medium",
+      question:  "Which of the following teams made the finals 3 consecutive years without winning a Stanley Cup?",
+      options:  ["Washington Capitals", "Vancouver Canucks", "St. Louis Blues", "Philadelphia Flyers"],
+      answer:  "St. Louis Blues",
+      category:  "MLB",
+      difficultyLevel: 400
+    },
+
+    nhlMedium: {
+      id:  "nhl-medium",
+      question:  "Who set a record in 1976 scoring 10 points in a game?",
+      options:  ["Darryl Sittler", "Wayne Getzky", "Ron Francis", "Maurice Richard"],
+      answer:  "Darryl Sittler",
+      category:  "MLB",
+      difficultyLevel: 600
+    },
+
+    nhlMediumHard: {
+      id:  "nhl-medium-hard",
+      question:  "Who was the first American team to play in the NHL?",
+      options:  ["New York Rangers", "Boston Bruins", "Detroit Red Wings", "Montreal Canadiens"],
+      answer:  "Boston Bruins",
+      category:  "MLB",
+      difficultyLevel: 800
+    },
+
+    nhlHard: {
+      id:  "nhl-hard",
+      question:  "In 1981-82 Wayne Gretzky set a record for the fewest number of games to score 50 goals. How many games did it take?",
+      options:  ["46", "39", "42", "49"],
+      answer:  "39",
+      category:  "MLB",
+      difficultyLevel: 1000
+    }
 
 };
 
