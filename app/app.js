@@ -1,123 +1,86 @@
-// REFACTORING IDEAS
-// 1. HAVE THE QUESTION DATA IN A SEPARATE FILE AND IMPORT IT
-// 2. INSTEAD OF HAVING 4 SEPARATE BOXOPTION STRINGS.. USE A BOXOPTION ARRAY AND ASSIGN
-// EACH BOXOPTION ELEMENT TO ITS CORRELATING DATAOPTION ELEMENT WITHIN A FOR LOOP
-// ONCE YOU DO THOSE 2 CREATE A NEW MAKE YOUR INITIAL COMMIT
-
-// USE A FUNCTION TO GIVE EACH BOX A CLASS NAME OF "BOX" INSTEAD OF DOING IT MANUALLY IN THE HTML DOCUMENT
-
-// add
 
 var score = 0;
 window.onload = function() {
-
-    var modalText = "";
-    var answer = "";
-    var boxOption1="";
-    var boxOption2="";
-    var boxOption3="";
-    var boxOption4="";
     var section = document.querySelector('section');
     section.addEventListener('click',getQuestion);
 }   
 
   function getQuestion() {
-    var box =  document.getElementById(event.target.id); // store the id of the result in a box variable
-        box.style['color'] = 'blue'; //card will be all blue when its been clicked
-        var clickedBox = event.target.id;
-        // iterate through objects and return correct data which will be used to load question to modal
-         for (var obj in questions) {
-           for (var key in questions[obj]) {
-             if (clickedBox == questions[obj][key]) {
-               // we found the card so now pass this data into a var
-               var questionData = questions[obj];
-               // assign the current question id to empty so question can't be clicked more than once
-               questions[obj] = " "; 
-            }
-          }
+    var box =  document.getElementById(event.target.id);
+    var clickedBox = event.target.id; // stores the id of the clicked box
+    console.log(box);
+    box.style['color'] = 'blue'; //card will be all blue when its been clicked
+    // iterate through questions data and return correct data obj which will be used to load question to modal
+    for (var obj in questions) {
+      for (var key in questions[obj]) {
+        if (clickedBox == questions[obj][key]) {
+          // we found the matching data so now pass this data into a variable
+          var questionData = questions[obj];
+          // assign the current question id to empty so question can't be clicked more than once
+          questions[obj] = " "; 
         }
-        loadQuestion(questionData);
+      }
+    }
+    loadQuestion(questionData);
   }
 
 
   // first load the questions and display it
  function loadQuestion(data) {
      var modal = document.getElementById('mod');
-     modalText = document.querySelector('.modal-content p');
-     modalText.innerHTML = ''; // clear modal after every question
+     var modalText = document.querySelector('.modal-content');
+     modalText.textContent = ''; // clear modal after every question
+     
+     
 
      var boxQuestion = document.createElement('p');
      boxQuestion.innerHTML = data.question;
      boxQuestion.classList.add('question');
 
-     boxOption1 = document.createElement('p');
-     boxOption1.innerHTML = data.options[0];
-     boxOption1.classList.add('option1');
-
-
-     boxOption2 = document.createElement('p');
-     boxOption2.innerHTML = data.options[1];
-     boxOption2.classList.add('option2');
-
-     boxOption3 = document.createElement('p');
-     boxOption3.innerHTML = data.options[2];
-     boxOption3.classList.add('option3');
-
-     boxOption4 = document.createElement('p');
-     boxOption4.innerHTML = data.options[3];
-     boxOption4.classList.add('option4');
-
-
      modalText.appendChild(boxQuestion);
 
-     modalText.appendChild(boxOption1);
-     modalText.appendChild(boxOption2);
-     modalText.appendChild(boxOption3);
-     modalText.appendChild(boxOption4);
-     modal.style.display = 'block'; // displays modal
+     for (var i = 0; i < 4; i++) {
+       var boxOptions = document.createElement('p');
+       boxOptions.classList.add('option'+i);
+       boxOptions.textContent = data.options[i];
+       modalText.appendChild(boxOptions);
+     }
 
-     //questionResult(modalText,modal,data); //COMMENT FOR NOW
-    answer = document.createElement('p');
+    modal.style.display = 'block'; // displays modal
+
+    var answer = document.createElement('p');
     answer.innerHTML = data.answer;
     answer.classList.add('answer');
 
-    modalText.addEventListener('click', function(Event){  
-     modalText.innerHTML = '<p class="modal-result">The correct answer is: </p>';
-      modalText.appendChild(answer);
-
-      setTimeout(function(){
-        modal.style.display = 'none';
-      }, 2000); // show the answer then close modal after
+    for (var i = 1; i < 5;i++) {
+      modalText.childNodes[i].addEventListener('click', function() {
+        getScore(data, modalText, modal, answer);
       });
+    }
+  }
 
-      boxOption1.onclick = function(event){
-      getScore(data);
-      };
-      boxOption2.onclick = function(event){
-      getScore(data);
-      };
-      boxOption3.onclick = function(event){
-      getScore(data);
-      };
-      boxOption4.onclick = function(event){
-      getScore(data);
-      };
 
- }
-
- function getScore(data) {
+ function getScore(data, modalText, modal, answer) {
   var scoreCheck = document.getElementById('score');
-  if (event.target.innerHTML == answer.innerHTML) {
-        //scoreCheck.innerHTML = addScore(data);
+  if (event.target.textContent == answer.textContent) {
         score += data.difficultyLevel;
       }
       else {
         score -= data.difficultyLevel;
       }
-      scoreCheck.innerHTML = "Player Score: " + score;
+      scoreCheck.textContent = "Player Score: " + score;
+
+      displayScore(modalText, modal, answer);
  }
 
-
+ function displayScore(modalText, modal, answer) {
+  modalText.innerHTML = '<p class="modal-result">The correct answer is: </p>';
+  modalText.appendChild(answer);
+  
+  setTimeout(function(){
+    modal.style.display = 'none';
+  }, 2000); // show the answer then close modal after
+ }
 
 
 var questions = {
@@ -347,7 +310,6 @@ var questions = {
       category:  "MLB",
       difficultyLevel: 1000
     }
-
 };
 
 

@@ -68,10 +68,20 @@ section p {
     color: #fff;
 }
 
-.option1 {
+.option0 {
   border-radius: 5px;
   color: #fff;
   cursor: pointer;  
+  letter-spacing: .5px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  margin: 0px 70px 15px 70px;
+}
+
+.option1 {
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
   letter-spacing: .5px;
   border: 1px solid #fff;
   padding: 10px 30px;
@@ -98,18 +108,12 @@ section p {
   margin: 0px 70px 15px 70px;
 }
 
-.option4 {
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  letter-spacing: .5px;
-  border: 1px solid #fff;
-  padding: 10px 30px;
-  margin: 0px 70px 15px 70px;
+.option0:hover {
+  color:#a9b2b9;
 }
 
 .option1:hover {
-  color:#a9b2b9;
+  color: #a9b2b9
 }
 
 .option2:hover {
@@ -117,10 +121,6 @@ section p {
 }
 
 .option3:hover {
-  color: #a9b2b9
-}
-
-.option4:hover {
   color: #a9b2b9
 }
 
