@@ -1,18 +1,20 @@
-import $ from 'jquery';
+const $ = require('jquery')
 
 module.exports = {
-    currentuser : function(){
+    getQuestions : function(category, difficulty){
         return $.ajax({
-            url: "http://localhost:4000/api/auth/currentuser",
+            url: 'http://localhost:4000/api/v2?category=' + category + '&difficulty=' + difficulty,
             type: 'GET',
+            crossDomain: true,
+            dataType: 'json',
             success: function(res) {
-                return res
+                return res;
             },
             error: function( jqXhr, textStatus, errorThrown ){
             }
         })
     },
-    logon : function (logonParameters){
+    addQuestions : function (set){
         return $.ajax({
             type: 'post',
             url: 'http://localhost:8080/api/auth/logon',
@@ -24,31 +26,5 @@ module.exports = {
             error: function( jqXhr, textStatus, errorThrown ){
             }
         })
-    },
-    logout : function(){
-        return $.ajax({
-            url: "http://localhost:8080/api/auth/logout",
-            type: 'GET',
-            success: function(res) {
-                return res
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-            }
-        })
-    },
-    createuser : function(signUpParameters){
-        return $.ajax({
-            type: 'post',
-            url: 'http://localhost:8080/api/auth/createuser',
-            data: JSON.stringify(signUpParameters),
-            contentType: "application/json; charset=utf-8",
-            success: function (res) {
-                return res
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-            }
-        })
     }
-
-
 }
