@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/stylesheet/form.css">
+    <title>Title</title>
+</head>
+<body>
+<div id="contact-form">
+    <div>
+        <h1>Sports Jeopardy</h1>
+        <h4>The Open Trivia Database provides a completely free JSON API for use in programming projects</h4>
+    </div>
+    <p id="failure">Oopsie...message not sent.</p>
+    <p id="success">http://localhost:4000/api/v2?category=NBA&level=easy</p>
+
+    <form method="GET" action="/api/v2"  id="jeopardyAPI" target="_blank">
+        <!--<div>-->
+            <!--<label for="name">-->
+                <!--<input type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<label for="email">-->
+                <!--<input type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />-->
+            <!--</label>-->
+        <!--</div>-->
+        <div>
+            <label for="category">
+                <select id="category" name="category" tabindex="4">
+                    <option value="NBA">NBA</option>
+                    <option value="NFL">NFL</option>
+                    <option value="MLS">MLS</option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <label for="difficulty">
+                <select id="difficulty" name="difficulty" tabindex="4">
+                    <option value="easy">Easy</option>
+                    <option value="easyMedium">Easy Medium</option>
+                    <option value="medium">Medium</option>
+                    <option value="mediumHard">Medium Hard</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </label>
+        </div>
+        <div>
+
+        </div>
+    </form>
+    <button type="submit" form="jeopardyAPI" value="Submit">SEND</button>
+
+</div>
+</body>
+</html>

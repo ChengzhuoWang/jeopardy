@@ -1,3 +1,4 @@
+const dataSource = require('./httpRequests.js');
 
 var score = 0;
 window.onload = function() {
@@ -10,26 +11,28 @@ window.onload = function() {
     var boxOption4="";
     var section = document.querySelector('section');
     section.addEventListener('click',getQuestion);
-}   
+}
 
-  function getQuestion() {
-    var box =  document.getElementById(event.target.id); // store the id of the result in a box variable
+function getQuestion() {
+    var id = null;
+    var category = null;
+    var difficulty = null;
+    var questionData = null
+    return new Promise((resolve, reject) => {
+        var box = document.getElementById(event.target.id); // store the id of the result in a box variable
         box.style['color'] = 'blue'; //card will be all blue when its been clicked
-        var clickedBox = event.target.id;
-        // iterate through objects and return correct data which will be used to load question to modal
-         for (var obj in questions) {
-           for (var key in questions[obj]) {
-             if (clickedBox == questions[obj][key]) {
-               // we found the card so now pass this data into a var
-               var questionData = questions[obj];
-               // assign the current question id to empty so question can't be clicked more than once
-               questions[obj] = " "; 
-            }
-          }
-        }
-        loadQuestion(questionData);
-  }
-
+        id = event.target.id;
+        category = document.getElementById(event.target.id).getAttribute('category');
+        difficulty = document.getElementById(event.target.id).getAttribute('difficulty');
+        setTimeout(function(){
+            resolve("Success!");
+        }, 250);
+    }).then(() => {
+        return dataSource.getQuestions(category, difficulty) // get questions based on category and difficulty
+    }).then((data) => {
+        loadQuestion(data[0]); // select the first question. Randomize question selection in the future
+    })
+}
 
   // first load the questions and display it
  function loadQuestion(data) {
@@ -108,152 +111,3 @@ window.onload = function() {
       }
       scoreCheck.innerHTML = "Player Score: " + score;
  }
-
-
-
-
-var questions = {
-  
-    nbaEasy: {
-      id:  "nba-easy",
-      question:  "What number did Michael Jordan wear when he came out of retirement for the end of the 1994-1995 season??",
-      options:  ["23", "22", "1", "45"],
-      answer:  "45",
-      category:  "NBA",
-      difficultyLevel: 200
-    },
-    nbaEasyMedium:  {
-      id: "nba-easy-medium",
-      question:  "Who is the tallest player in the NBA currently?",
-      options:  ["Kristaps Porzingis", "Alex Len", "Shaquille O'neal", "Rudy Gobert"],
-      answer:  "Kristaps Porzingis",
-      category:  "NBA",
-      difficultyLevel: 400
-
-    },
-
-    nbaMedium:  {
-      id:  "nba-medium",
-      question:  "Who is the strongest player in the NBA of this list?",
-      options:  ["Ben Wallace", "Kawhi Leonard", "Yao Ming", "Shaquille O'neal"],
-      answer:  "Shaquille O'neal",
-      category:  "NBA",
-      difficultyLevel: 600
-    },
-
-    nbaMediumHard: {
-      id:  "nba-medium-hard",
-      question:  "Who is the strongest player in the NBA of this list?",
-      options:  ["Ben Wallace", "Kawhi Leonard", "Yao Ming", "Shaquille O'neal"],
-      answer:  "Shaquille O'neal",
-      category:  "NBA",
-      difficultyLevel: 800 
-    },
-
-    nbaHard: {
-      id:  "nba-hard",
-      question:  "Who is the oldest NBA player as of today?",
-      options:  ["Manu Ginobili", "Steve Nash", "Vince Carter", "Jason Terry"],
-      answer:  "Vince Carter",
-      category:  "NBA",
-      difficultyLevel: 1000 
-    },
-
-    nflEasy: {
-      id:  "nfl-easy",
-      question:  "He holds the single-season record for touchdown receptions with 23",
-      options:  ["Randy Moss", "Jerry Rice", "Calvin Johnson", "Terrell Owens"],
-      answer:  "Randy Moss",
-      category:  "NFL",
-      difficultyLevel: 200 
-    },
-
-    nflEasyMedium: {
-      id:  "nfl-easy-medium",
-      question:  "Who has the most wins as a head coach in the NFL?",
-      options:  ["George Halas", "Tom Landry", "Curly Lambeau", "Don Shula"],
-      answer:  "Don Shula",
-      category:  "NFL",
-      difficultyLevel: 400
-    },
-
-    nflMedium: {
-      id:  "nfl-medium",
-      question:  "Who has the most wins as a head coach in the NFL?",
-      options:  ["Richard Dent", "Lawrence Taylor", "Harvey Martin", "Ray Lewis"],
-      answer:  "Lawrence Taylor",
-      category:  "NFL",
-      difficultyLevel: 600
-    },
-
-    nflMediumHard: {
-      id:  "nfl-medium-hard",
-      question:  "This state has produced more pro football Hall of Famers than any other state",
-      options:  ["California", "Pennsylvania", "Ohio", "Texas"],
-      answer:  "Pennsylvania",
-      category:  "NFL",
-      difficultyLevel: 800
-    },
-
-
-    nflHard: {
-      id:  "nfl-hard",
-      question:  "How many Heisman Trophy winners have gone on to be MVP of the Super Bowl?",
-      options:  ["2", "3", "4", "5"],
-      answer:  "4",
-      category:  "NFL",
-      difficultyLevel: 1000
-    },
-
-    mlsEasy: {
-      id:  "mls-easy",
-      question:  "Which LA Galaxy player has the record for most career goals?",
-      options:  ["Cobi Jones", "Alexi Lalas", "Landon Donovan", "David Beckham"],
-      answer:  "Landon Donovan",
-      category:  "MLS",
-      difficultyLevel: 200
-    },
-
-    mlsEasyMedium: {
-      id:  "mls-easy-medium",
-      question:  "In what year were the LA Galaxy founded?",
-      options:  ["1985", "1995", "2000", "2005"],
-      answer:  "1995",
-      category:  "MLS",
-      difficultyLevel: 400
-    },
-
-    mlsMedium: {
-      id:  "mls-medium",
-      question:  "When was the first season for Major League Soccer?",
-      options:  ["1996", "2005", "2000", "1990"],
-      answer:  "1996",
-      category:  "MLS",
-      difficultyLevel: 600
-    },
-
-    mlsMediumHard: {
-      id:  "mls-medium-hard",
-      question:  "Who became the commissioner of Major League Soccer in 1999?",
-      options:  ["Landon Donovan", "Bruce Arena", "Don Garber", "Bob Bradley"],
-      answer:  "Don Garber",
-      category:  "MLS",
-      difficultyLevel: 800
-    },
-
-    mlsHard: {
-      id:  "mls-hard",
-      question:  "In 2003 who became the youngest pro athlete when he signed a contract with MLS?",
-      options:  ["Freddy Adu", "Seth Trembly", "Duke Hashimoto", "Benedict Vilakazi"],
-      answer:  "Freddy Adu",
-      category:  "MLS",
-      difficultyLevel: 1000
-    } 
-
-};
-
-
-
-
-
-
