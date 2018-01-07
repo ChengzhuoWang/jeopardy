@@ -10,7 +10,7 @@ module.exports = {
             apiURL = 'https://' + location.hostname;
         }
         return $.ajax({
-            url: 'https://localhost:4000/api/v2?category=' + category + '&difficulty=' + difficulty,
+            url: apiURL +'/api/v2?category=' + category + '&difficulty=' + difficulty,
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
