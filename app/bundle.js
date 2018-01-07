@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 const dataSource = require('./httpRequests.js');
-
+console.log(location)
 var score = 0;
 window.onload = function() {
 
@@ -115,8 +115,15 @@ const $ = require('jquery')
 
 module.exports = {
     getQuestions : function(category, difficulty){
+    	var apiURL = null;
+    	if(location.hostname == 'localhost'){
+            apiURL = location.host;
+		}
+		else{
+            apiURL = location.hostname;
+		}
         return $.ajax({
-            url: 'http://localhost:4000/api/v2?category=' + category + '&difficulty=' + difficulty,
+            url: 'http://'+ apiURL +'/api/v2?category=' + category + '&difficulty=' + difficulty,
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
