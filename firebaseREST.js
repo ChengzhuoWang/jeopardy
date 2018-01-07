@@ -12,6 +12,7 @@ firebase.auth().signInAnonymously().then(function() {
 });
 
 console.log("process.env.PORT:" + process.env.PORT)
+console.log("process.env.NODE_ENV:" + process.env.NODE_ENV)
 router.get('/all', (req, res) => {
     return firebase.database().ref('/').once('value').then(function(snapshot) {
         res.send(snapshot.val())
