@@ -16,8 +16,8 @@ var app = express();
      res.header('Access-Control-Allow-Headers', 'Content-Type');
      return next();
  });
-process.env.PORT = 4000;
-process.env.IP = '127.0.0.1';
+//process.env.PORT = 4000;
+//process.env.IP = '127.0.0.1';
 
 
 app.set('port', (process.env.PORT || 5000));
