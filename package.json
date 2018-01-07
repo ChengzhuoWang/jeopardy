@@ -1,0 +1,21 @@
+{
+  "name": "Jeopardy",
+  "version": "1.1.0",
+  "description": "Jeopardy Game",
+  "repository": {
+    "type": "git"
+  },
+  "author": "Khaled & Elim",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "browserify": "^15.0.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "firebase": "^4.8.1",
+    "jquery": "^3.2.1",
+    "request": "^2.83.0"
+  }
+}
