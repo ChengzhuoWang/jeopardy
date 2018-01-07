@@ -117,13 +117,13 @@ module.exports = {
     getQuestions : function(category, difficulty){
     	var apiURL = null;
     	if(location.hostname == 'localhost'){
-            apiURL = location.host;
+            apiURL = 'http://' + location.host;
 		}
 		else{
-            apiURL = location.hostname;
+            apiURL = 'https://' + location.hostname;
 		}
         return $.ajax({
-            url: 'http://'+ apiURL +'/api/v2?category=' + category + '&difficulty=' + difficulty,
+            url: apiURL +'/api/v2?category=' + category + '&difficulty=' + difficulty,
             type: 'GET',
             crossDomain: true,
             dataType: 'json',

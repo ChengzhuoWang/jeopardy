@@ -2,6 +2,13 @@ const $ = require('jquery')
 
 module.exports = {
     getQuestions : function(category, difficulty){
+        var apiURL = null;
+        if(location.hostname == 'localhost'){
+            apiURL = 'http://' + location.host;
+        }
+        else{
+            apiURL = 'https://' + location.hostname;
+        }
         return $.ajax({
             url: 'https://localhost:4000/api/v2?category=' + category + '&difficulty=' + difficulty,
             type: 'GET',
