@@ -116,7 +116,7 @@ const $ = require('jquery')
 module.exports = {
     getQuestions : function(category, difficulty){
     	var apiURL = null;
-    	if(location.hostname == 'localhost'){
+    	if(location.hostname == 'localhost' || location.hostname == '127.0.0.1'){
             apiURL = 'http://' + location.host;
 		}
 		else{
