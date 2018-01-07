@@ -12,10 +12,7 @@
   },
   "dependencies": {
     "browserify": "^15.0.0",
-<<<<<<< HEAD
     "cors": "^2.8.4",
-=======
->>>>>>> e8dfe2953b71ae1f1363a26ddf7cdb971753f2d4
     "express": "^4.15.4",
     "firebase": "^4.8.1",
     "jquery": "^3.2.1",
