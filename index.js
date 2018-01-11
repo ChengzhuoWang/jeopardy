@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.get('/jeopardy-api', function(req, res) {
+app.get('/sports-trivia-api', function(req, res) {
     res.sendFile(path.join(__dirname, '/app/api.html'));
 });
 
