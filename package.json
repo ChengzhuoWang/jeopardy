@@ -17,5 +17,8 @@
     "firebase": "^4.8.1",
     "jquery": "^3.2.1",
     "request": "^2.83.0"
+  },
+  "engines": {
+    "node": "8.9.1"
   }
 }
