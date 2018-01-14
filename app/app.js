@@ -1,4 +1,3 @@
-const dataSource = require('./httpRequests.js');
 
 let score = 0;
 window.onload = () => {
@@ -7,25 +6,24 @@ const section = document.querySelector('section');
 }
 
 function getQuestion() {
-  let id = null;
-  let category = null;
-  let difficulty = null;
-  let questionData = null;
-  return new Promise((resolve, reject) => {
-    let box = document.getElementById(event.target.id); // stores the id of the clicked box
-    box.style['color'] = 'blue'; //card will be all blue when its been clicked
+  let boxElement =  event.target;
+  let boxId = event.target.id; // stores the id of the clicked box
+  let category = boxElement.getAttribute('category');
+  let difficulty = boxElement.getAttribute('difficulty');
 
-    id = event.target.id;
-    category = document.getElementById(event.target.id).getAttribute('category');
-    difficulty = document.getElementById(event.target.id).getAttribute('difficulty');
-    setTimeout(function(){
-      resolve("Success!");
-    }, 250);
-  }).then(() => {
-    return dataSource.getQuestions(category, difficulty) // get questions based on category and difficulty
-  }).then((data) => {
-    loadQuestion(data[0]); // select the first question. Randomize question selection in the future
-  })
+  boxElement.style['color'] = 'blue'; //card will be all blue when its been clicked
+  let url = 'https://sports-jeopardy.herokuapp.com/';
+  let fullUrl = url + 'api/v2?category=' + category + '&difficulty=' + difficulty;
+
+  fetch(fullUrl)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      // will load the first question for now but will randomize it once data expands
+      loadQuestion(data[0]);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 
   // first load the questions and display it
@@ -61,11 +59,30 @@ function getQuestion() {
 function getScore(data, modalText, modal, answer) {
   let scoreCheck = document.getElementById('score');
   (event.target.textContent == answer.textContent) ? 
-  score+= data.difficultyLevel :
-  score-= data.difficultyLevel;
+  score+= translateScore(data) :
+  score-= translateScore(data);
 
   scoreCheck.textContent = "Player Score: " + score;
   displayScore(modalText, modal, answer);
+}
+
+ // function will translate the difficultyLevel from fetched data into a score system
+ function translateScore(data) {
+  var level = data.difficultyLevel;
+  switch(level) {
+    case 'easy':
+      return 200;
+    case 'easyMedium':
+      return 400;
+    case 'medium':
+      return 600;
+    case 'mediumHard':
+      return 800;
+    case 'hard':
+      return 1000;
+    default:
+      console.log('Something went wrong I guess...');
+  }
 }
   
 function displayScore(modalText, modal, answer) {
