@@ -1,4 +1,6 @@
-
+How to play:
+	Click on boxes for questions to pop up. Score is at the bottom of the page
+	
 Current version of jeopardy game:
 	https://sports-jeopardy.herokuapp.com/
 	
